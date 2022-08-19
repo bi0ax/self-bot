@@ -15,3 +15,9 @@ $ python3 -m pip install -r requirements.txt
 # edit token.txt to match your user token, and then run program
 $ python3 selfbot.py
 ```
+
+## **Some commands**
+**.pingall** - does an @everyone essentially
+**.ghostpingall** - same thing, but a ghost ping
+**.dm** \<user mention> \<message> - dm's a specific user  
+**.dmall** \<message> - dm's everyone in the server with the message
