@@ -17,7 +17,7 @@ $ python3 selfbot.py
 ```
 
 ## **Some commands**
-**.pingall** - does an @everyone essentially
-**.ghostpingall** - same thing, but a ghost ping
+**.pingall** - does an @everyone essentially  
+**.ghostpingall** - same thing, but a ghost ping  
 **.dm** \<user mention> \<message> - dm's a specific user  
 **.dmall** \<message> - dm's everyone in the server with the message
