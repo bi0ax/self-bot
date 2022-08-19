@@ -5,12 +5,11 @@ import os
 import subprocess
 import asyncio
 import requests
-import base64
+import json
 
-#intents = selfcord.Intents.default()
-#intents.members = True
 bot = commands.Bot(command_prefix=".", self_bot=True)
 token = open(Path("token.txt"), "r").read() #reads the token.txt file
+password = "" #needs to be filled out if you want to use the .clone command
 
 @bot.event
 async def on_ready():
@@ -40,14 +39,36 @@ async def pingall(ctx):
         else:
             messages.append(current_message)
             current_message = ""
-            already =  True
     for message in messages:
         await ctx.channel.send(message) 
 
 @bot.command()
+async def ghostpingall(ctx):
+    await ctx.message.delete()
+    messages = []
+    current_message = ""
+    print(ctx.guild.members)
+    for index, member in enumerate(ctx.guild.members):
+        formatted_ping = member.mention
+        if len(current_message) < 1900:
+            current_message += f"{formatted_ping} "
+            if index == len(ctx.guild.members) - 1:
+                messages.append(current_message)
+        else:
+            messages.append(current_message)
+            current_message = ""
+    for message in messages:
+        msg = await ctx.channel.send(message) 
+        await msg.delete()
+
+@bot.command()
 async def dmall(ctx, *, msg):
     for member in ctx.guild.members:
-        member.send(msg)
+        user = await bot.fetch_user(member.id)
+        try:
+            await user.send(msg)
+        except:
+            pass    
 
 @bot.command()
 async def dm(ctx, *, username):
@@ -64,7 +85,7 @@ async def clone(ctx, person): #can only be done twice an hour
     user = await bot.fetch_user(user_id)
     avatar_url = user.avatar.url
     image = requests.get(avatar_url).content
-    await bot.user.edit(avatar=image, username=user.name, password="Bat4Drill")
+    await bot.user.edit(avatar=image, username=user.name, password=password)
 
 if __name__ == "__main__":   
     bot.run(token)

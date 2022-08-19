@@ -4,11 +4,14 @@
 ## **Installation**
 ```
 # clone the repo
-$ git clone https://github.com/sherlock-project/sherlock.git
+$ git clone https://github.com/bi0ax/self-bot.git
 
-# change the working directory to sherlock
-$ cd sherlock
+# change the working directory to self-bot
+$ cd self-bot
 
 # install the requirements
 $ python3 -m pip install -r requirements.txt
+
+# edit token.txt to match your user token, and then run program
+$ python3 selfbot.py
 ```
